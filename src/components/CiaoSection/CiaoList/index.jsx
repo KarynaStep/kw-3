@@ -8,7 +8,7 @@ class CiaoList extends Component {
   );
   render() {
       const { users } = this.props;
-      return <sertion>{users.map(this.createList)}</sertion>
+      return <section>{users.map(this.createList)}</section>
   }
 }
 
