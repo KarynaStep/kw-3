@@ -1,4 +1,4 @@
-.form {
+.form  {
   display: flex;
   flex-direction: column;
 
@@ -21,4 +21,9 @@ p {
 }
 .inputCheckbox {
   display: inline;
+}
+.buttonInfo{
+  display: block;
+  margin: 10px auto;
+  
 }

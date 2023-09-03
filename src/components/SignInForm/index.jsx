@@ -17,17 +17,21 @@ class SignInForm extends Component {
   constructor(props) {
     super(props);
     this.state = { ...initialValues };
+    this.info = "";
   }
 
   handleForm = (event) => {
     event.preventDefault();
-    console.log(event.target.login.value);
-    console.log(event.target.email.value);
-    console.log(event.target.password.value);
-    console.log(event.target.radio.value);
-    console.log(event.target.check.value);
-    //event.target.reset();
+    this.info = JSON.parse(JSON.stringify(this.state));
+    // console.log(event.target.login.value);
+    // console.log(event.target.email.value);
+    // console.log(event.target.password.value);
+    // console.log(event.target.radio.value);
+    // console.log(event.target.check.value);
+
     this.setState({ ...initialValues });
+    console.log(this.info);
+    event.target.reset();
   };
 
   handleInput = ({ target: { name, value } }) => {
@@ -46,6 +50,11 @@ class SignInForm extends Component {
       [name]: value,
     });
   };
+  showData = () => {
+    console.log(this.info);
+    return <p>{Object.entries(this.info)}</p>;
+  };
+
   render() {
     const {
       login,
@@ -64,74 +73,79 @@ class SignInForm extends Component {
     });
 
     return (
-      <form className={styles.form} onSubmit={this.handleForm}>
-        {/* додати інпут з name='login' з валідацією */}
+      <>
+        <form className={styles.form} onSubmit={this.handleForm}>
+          {/* додати інпут з name='login' з валідацією */}
 
-        <input
-          className={classesLogin}
-          value={login}
-          onChange={this.handleInput}
-          type="login"
-          name="login"
-          placeholder="your login"
-        />
-        <input
-          className={classesEmail}
-          value={email}
-          onChange={this.handleInput}
-          type="email"
-          name="email"
-          placeholder="your email"
-        />
-        <input
-          className={classesPassword}
-          value={password}
-          onChange={this.handleInput}
-          type="password"
-          name="password"
-          placeholder="your password"
-        />
-        <p>
-          Gender selection
-          <label>
-            <input
-              onChange={this.handleRadio}
-              type="radio"
-              name="radio"
-              value="man"
-            />
-            man
-          </label>
-          <label>
-            <input
-              onChange={this.handleRadio}
-              type="radio"
-              name="radio"
-              value="woman"
-            />
-            woman
-          </label>
-          <label>
-            <input
-              onChange={this.handleRadio}
-              type="radio"
-              name="radio"
-              value="other"
-            />
-            other
-          </label>
-        </p>
+          <input
+            className={classesLogin}
+            value={login}
+            onChange={this.handleInput}
+            type="login"
+            name="login"
+            placeholder="your login"
+          />
+          <input
+            className={classesEmail}
+            value={email}
+            onChange={this.handleInput}
+            type="email"
+            name="email"
+            placeholder="your email"
+          />
+          <input
+            className={classesPassword}
+            value={password}
+            onChange={this.handleInput}
+            type="password"
+            name="password"
+            placeholder="your password"
+          />
+          <p>
+            Gender selection
+            <label>
+              <input
+                onChange={this.handleRadio}
+                type="radio"
+                name="radio"
+                value="man"
+              />
+              man
+            </label>
+            <label>
+              <input
+                onChange={this.handleRadio}
+                type="radio"
+                name="radio"
+                value="woman"
+              />
+              woman
+            </label>
+            <label>
+              <input
+                onChange={this.handleRadio}
+                type="radio"
+                name="radio"
+                value="other"
+              />
+              other
+            </label>
+          </p>
 
-        <p>Agreement with privacy policy</p>
-        <input
-          className={styles.inputCheckbox}
-          onChange={this.handleCheckbox}
-          checked={check}
-          type="checkbox"
-          name="check"
-        />
-        <button type="submit">send</button>
-      </form>
+          <p>Agreement with privacy policy</p>
+          <input
+            className={styles.inputCheckbox}
+            onChange={this.handleCheckbox}
+            checked={check}
+            type="checkbox"
+            name="check"
+          />
+          <button type="submit">send</button>
+        </form>
+        <button onClick={this.showData} className={styles.buttonInfo}>
+          Your information
+        </button>
+      </>
     );
   }
 }
