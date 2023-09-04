@@ -115,6 +115,7 @@ class SignInForm extends Component {
             <label>
               <input
                 onChange={this.handleRadio}
+                defaultChecked="woman"
                 type="radio"
                 name="radio"
                 value="woman"
